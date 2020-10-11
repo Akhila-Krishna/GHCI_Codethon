@@ -22,7 +22,7 @@ def detect(frame):
     cv2.putText(frame, f'Total Persons : {person-1}', (40,70), cv2.FONT_HERSHEY_DUPLEX, 0.8, (255,0,0), 2)
     cv2.imshow('output', frame)
     print(person-1)
-    while(person-1 > 5):
+    while(person-1 > 2):
         playsound('audio.mp3')
     return frame
 
