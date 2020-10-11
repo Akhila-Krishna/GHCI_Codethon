@@ -18,8 +18,8 @@ def detect(frame):
         cv2.rectangle(frame, (x,y), (x+w,y+h), (0,255,0), 2)
         cv2.putText(frame, f'person {person}', (x,y), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0,0,255), 1)
         person += 1
-    cv2.putText(frame, 'Status : Detecting ', (40,40), cv2.FONT_HERSHEY_DUPLEX, 0.8, (255,0,0), 2)
-    cv2.putText(frame, f'Total Persons : {person-1}', (40,70), cv2.FONT_HERSHEY_DUPLEX, 0.8, (255,0,0), 2)
+    cv2.putText(frame, 'Status : Detecting ', (40,40), cv2.FONT_HERSHEY_DUPLEX, 0.7, (0,0,0), 2)
+    cv2.putText(frame, f'Total Persons : {person-1}', (40,70), cv2.FONT_HERSHEY_DUPLEX, 0.7, (0,0,0), 2)
     cv2.imshow('output', frame)
     print(person-1)
     while(person-1 > 2):
@@ -36,18 +36,18 @@ def detectByPathVideo(path, writer):
 
     print('Detecting people...')
     while video.isOpened():
-        #check is True if reading was successful 
+        #Check is True if reading was successful 
         check, frame =  video.read()
 
         if check:
-            frame = imutils.resize(frame , width=min(800,frame.shape[1]))
+            frame = imutils.resize(frame , width = min(800,frame.shape[1]))
             frame = detect(frame)
             
             if writer is not None:
                 writer.write(frame)
             
             key = cv2.waitKey(1)
-            if key== ord('q'):
+            if key == ord('q'):
                 break
         else:
             break
@@ -108,10 +108,10 @@ def humanDetector(args):
 
 def argsParser():
     arg_parse = argparse.ArgumentParser()
-    arg_parse.add_argument("-v", "--video", default=None, help="path to Video File ")
-    arg_parse.add_argument("-i", "--image", default=None, help="path to Image File ")
-    arg_parse.add_argument("-c", "--camera", default=False, help="Set true if you want to use the camera.")
-    arg_parse.add_argument("-o", "--output", type=str, help="path to optional output video file")
+    arg_parse.add_argument("-v", "--video", default = None, help = "path to Video File ")
+    arg_parse.add_argument("-i", "--image", default = None, help = "path to Image File ")
+    arg_parse.add_argument("-c", "--camera", default = False, help = "Set true if you want to use the camera.")
+    arg_parse.add_argument("-o", "--output", type = str, help = "path to optional output video file")
     args = vars(arg_parse.parse_args())
 
     return args
